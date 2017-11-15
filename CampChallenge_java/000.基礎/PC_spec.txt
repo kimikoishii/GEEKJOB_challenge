@@ -1,0 +1,4 @@
+OS：windows10　Home　64ビット
+CPU：intel core i5 2.5GHz
+メモリ：4GB
+HDD：148GB
