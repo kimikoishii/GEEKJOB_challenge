@@ -13,21 +13,22 @@
     </head>
     <body>
         <%
+
 int thisyear = 2017;
 int birth = 1991;
 int age1 = thisyear - birth;
+String age = String.valueOf(age1);
+age +="歳";
 
 String hellow = "こんにちは！";
 String name = "石井喜美子";
-String age2 = "歳";
 String desu = "です。";
 String yoro = "よろしく";
 
 out.print(hellow);
 out.print(name);
 out.print(desu);
-out.print(age1);
-out.print(age2);
+out.print(age);
 out.print(desu);
 out.print("<br>");
 out.print(yoro);
