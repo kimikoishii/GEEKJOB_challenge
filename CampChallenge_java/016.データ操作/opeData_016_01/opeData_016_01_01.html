@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>自己紹介</title>
+        <meta charset="UTF-8">
+        <style type="text/css"><!--
+            fieldset {display: inline;}
+--></style>
+    </head>
+    <body>
+        <form action="opeData_016_01_02.jsp" method="post">
+            <fieldset>
+                <legend>あなたのことを教えてください！</legend>
+                名前：<input type="text" name="txtName"><!-- テキストボックス -->
+                <br>
+                性別：男性<input type="radio" name="rdoMorF" value="0"><!-- チェックボックス -->
+                &nbsp;&nbsp;
+                女性<input type="radio" name="rdoMorF" value="1"><!-- チェックボックス -->
+                <br>
+                趣味：<br>
+                <textarea name="mulText"></textarea><!-- テキストエリア -->
+                <br>
+                <input type="submit" name="btnSubmit"><!-- 送信ボタン -->
+
+            </fieldset>
+        </form>
+    </body>
+</html>
