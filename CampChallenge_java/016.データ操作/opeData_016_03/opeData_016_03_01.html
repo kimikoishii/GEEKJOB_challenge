@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>値段</title>
+        <meta charset="UTF-8">
+
+    </head>
+    <body>
+        <form name ="test" action="a.jsp" method="get">
+            <label>
+                ▽総額：<input type="number" name="total" value="100" min="100" style="width:50px;" step ="100" required>円
+            </label>
+            <br>
+            <label>
+                ▽個数：<input type="number" name="count" value="1" min="1" style="width:50px;" required>個
+            </label>
+            <br>
+            <label>
+                ▽買ったもの：
+                <br>
+                <input type="radio" name="type" id="zakka" value="1" checked>雑貨
+
+                <input type="radio" name="type" id="seisen" value="2">生鮮食品
+
+                <input type="radio" name="type" id="sonota" value="3">その他
+
+            </label>
+            <br>
+            <input type="submit" name="btnSubmit"><!-- 送信ボタン -->
+        </form>
+    </body>
+</html>
