@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>数字を入力</title>
+        <meta charset="UTF-8">
+
+<!--        クエリストリングを利用して、以下の処理を実現してください。
+
+        1. 簡易素因数分解のロジックを作成します。
+        クエリストリングから渡された数値を1ケタの素数で可能な限り分解し、
+        元の値と素因数分解の結果を表示するようにしてください。
+        2ケタ以上の素数が含まれた数値の場合は、
+        「元の値　1ケタの素因数　余った値」と表記してください。-->
+    </head>
+    <body>
+        <form action="opeData_016_03_02.jsp" method="get">
+            簡易素因数分解をします。
+            <br>
+            数字を入力してね。
+            <br>
+            <!-- intの限界値以下の正数を受け付けます-->
+            <input type="number" name="num" min="0" max="2147483647"
+                   value="0" style="width:100px;">
+            <br>
+            <input type="submit" name="btn">
+        </form>
+    </body>
+</html>
