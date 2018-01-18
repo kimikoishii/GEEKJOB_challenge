@@ -34,24 +34,34 @@ public class InsertConfirm extends HttpServlet {
                 throw new Exception("不正なアクセスです");
             }
             
-            //フォームからの入力を取得
-            String name = request.getParameter("name");
-            String year = request.getParameter("year");
-            String month = request.getParameter("month");
-            String day = request.getParameter("day");
-            String type = request.getParameter("type");
-            String tell = request.getParameter("tell");
-            String comment = request.getParameter("comment");
+            //Birthday用の文字列作成
+            String birthday = request.getParameter("year") + "-" 
+                    + request.getParameter("month") + "-" + request.getParameter("day");
+            
+            //フォームからの入力を対応したUserDataBeansオブジェクトに格納していく
+            UserDataBeans udb = new UserDataBeans();
+            udb.setName(request.getParameter("name"));
+            udb.setBirthday(birthday);
+            udb.setYear(request.getParameter("year"));
+            udb.setMonth(request.getParameter("month"));
+            udb.setDay(request.getParameter("day"));
+            udb.setType(request.getParameter("type"));
+            udb.setTell(request.getParameter("tell"));
+            udb.setComment(request.getParameter("comment"));
 
-            //セッションに格納
-            session.setAttribute("name", name);
-            session.setAttribute("year", year);
-            session.setAttribute("month",month);
-            session.setAttribute("day", day);
-            session.setAttribute("type", type);
-            session.setAttribute("tell", tell);
-            session.setAttribute("comment", comment);
+            //UserDataBeansからの値をセッションに格納
+            session.setAttribute("name", udb.getName());
+            session.setAttribute("birthday", udb.getBirthday());
+            session.setAttribute("year", udb.getYear());
+            session.setAttribute("month", udb.getMonth());
+            session.setAttribute("day", udb.getDay());
+            session.setAttribute("type", udb.getType());
+            session.setAttribute("tell", udb.getTell());
+            session.setAttribute("comment", udb.getComment());
             System.out.println("Session updated!!");
+            
+            //リクエストスコープの準備
+            request.setAttribute("userData",udb);
             
             request.getRequestDispatcher("/insertconfirm.jsp").forward(request, response);
         }catch(Exception e){

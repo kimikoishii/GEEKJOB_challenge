@@ -1,6 +1,16 @@
+<%@page import="java.util.Date"%>
+<%@page import="jums.JumsHelper"%>
 <%@page import="javax.servlet.http.HttpSession" %>
 <%
     HttpSession hs = request.getSession();
+    //フォーム入力結果内容
+    String name = (String) hs.getAttribute("name");
+    String birthday = (String) hs.getAttribute("year") + "年"
+            + (String) hs.getAttribute("month") + "月"
+            + (String) hs.getAttribute("day") + "日";
+    String type = (String) hs.getAttribute("type");
+    String tell = (String) hs.getAttribute("tell");
+    String comment = (String) hs.getAttribute("comment");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,11 +21,12 @@
     </head>
     <body>
         <h1>登録結果</h1><br>
-        名前:<%= hs.getAttribute("name")%><br>
-        生年月日:<%= hs.getAttribute("year")+"年"+hs.getAttribute("month")+"月"+hs.getAttribute("day")+"日"%><br>
-        種別:<%= hs.getAttribute("type")%><br>
-        電話番号:<%= hs.getAttribute("tell")%><br>
-        自己紹介:<%= hs.getAttribute("comment")%><br>
+        <%=JumsHelper.getInstance().form(name, birthday, type, tell, comment)%>
         以上の内容で登録しました。<br>
     </body>
+    <br>
+    <!-- 1.JumsHelperクラスを利用して、全部のページにトップへのリンクが表示されるようにしなさい -->
+    <%=JumsHelper.getInstance().home()%>
+    <!-- 7.適切なタイミングでセッションがクリアになるようにしなさい -->
+    <%hs.invalidate();%>
 </html>
