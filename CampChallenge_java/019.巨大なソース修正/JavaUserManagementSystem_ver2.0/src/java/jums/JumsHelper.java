@@ -10,6 +10,7 @@ public class JumsHelper {
     
     //トップへのリンクを定数として設定
     private final String homeURL = "index.jsp";
+    private final String resultPageURL = "searchresult.jsp";
     
     public static JumsHelper getInstance(){
         return new JumsHelper();
@@ -18,6 +19,12 @@ public class JumsHelper {
     //トップへのリンクを返却
     public String home(){
         return "<a href=\""+homeURL+"\">トップへ戻る</a>";
+    }
+    
+    //検索結果へのリンクを返却
+    public String resultPage(){
+        
+        return "<a href=\""+resultPageURL+"\">検索結果へ戻る</a>";
     }
     
     /**

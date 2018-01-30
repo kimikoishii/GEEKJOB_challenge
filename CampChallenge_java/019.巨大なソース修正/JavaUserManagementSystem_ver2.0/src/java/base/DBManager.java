@@ -16,6 +16,7 @@ public class DBManager {
             System.out.println("DBConnected!!");
             return con;
         }catch(ClassNotFoundException e){
+            //何らかの理由で失敗したらエラーページにエラー文を渡して表示。想定は不正なアクセスとDBエラー
             throw new IllegalMonitorStateException();
         } catch (SQLException e) {
             throw new IllegalMonitorStateException();

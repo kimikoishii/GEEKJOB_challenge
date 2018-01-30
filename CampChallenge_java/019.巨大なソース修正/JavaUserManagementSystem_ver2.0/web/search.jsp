@@ -12,7 +12,7 @@
         <title>JUMSユーザー情報検索画面</title>
     </head>
     <body>
-         <form action="SearchResult" method="POST">
+         <form action="SearchResult" method="GET">
         名前:
         <input type="text" name="name">
         <br><br>
@@ -32,7 +32,6 @@
             <input type="radio" name="type" value="<%=i%>"><%=jh.exTypenum(i)%><br>
             <% } %>
         <br>
-
         <input type="submit" name="btnSubmit" value="検索">
     </form>
         <br>

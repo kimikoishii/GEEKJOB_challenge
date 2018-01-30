@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,17 +27,43 @@ public class UpdateResult extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+
+        //セッションスタート
+        HttpSession session = request.getSession();
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateResult</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateResult at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            request.setCharacterEncoding("UTF-8");//リクエストパラメータの文字コードをUTF-8に変更
+
+            //▼変更フォームからの入力を取得して、JavaBeansに格納（◇変更結果）
+            UserDataBeans udb = new UserDataBeans();
+            udb.setName(request.getParameter("name"));
+            udb.setYear(request.getParameter("year"));
+            udb.setMonth(request.getParameter("month"));
+            udb.setDay(request.getParameter("day"));
+            udb.setType(request.getParameter("type"));
+            udb.setTell(request.getParameter("tell"));
+            udb.setComment(request.getParameter("comment"));
+            //セッションからIDを取得してJavaBeansに格納
+            String ID = String.valueOf(session.getAttribute("userID"));
+            udb.setUserID(ID);
+
+            //DTOオブジェクトにマッピング。DB専用のパラメータに変換
+            UserDataDTO userdata = new UserDataDTO();
+            udb.UD2DTOMapping(userdata);
+
+            //DAOのupdateメソッドでDBに▼変更フォームの入力値を挿入
+            UserDataDAO.getInstance().update(userdata);
+
+            //◇変更結果をセッションに格納
+            session.setAttribute("updateData", udb);
+
+            //◇変更結果をリクエストディスパッチャでもちまわる
+            request.setAttribute("updateData", udb);
+            request.getRequestDispatcher("/updateresult.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            //何らかの理由で失敗したらエラーページにエラー文を渡して表示。想定は不正なアクセスとDBエラー
+            request.setAttribute("error", e.getMessage());
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
         } finally {
             out.close();
         }
